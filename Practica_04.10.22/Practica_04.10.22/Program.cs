@@ -1,98 +1,61 @@
-﻿int n = 20;
-int[] array = new int[n];
-Random rand = new Random();
-int maxNegative = -999, minPositive = 999; 
-for (int i = 0; i < n; i++)
+﻿/*
+int[] array = new int[] { 1, 2, 3, 4, 5 };
+int[] ans = new int[5];
+for (int i = 1; i < 5; i++)
 {
-    array[i] = rand.Next(-100,100);
-    if(array[i] < 0)
-    {
-        if(array[i] > maxNegative)
-        {
-            maxNegative = array[i];
-        }
-    }
-    if (array[i] > 0)
-    {
-        if (array[i] < minPositive)
-        {
-            minPositive = array[i];
-        }
-    }
+    ans[i - 1] = array[i];
 }
-Console.WriteLine($" {maxNegative},{minPositive}");
-int maxIndex = 0;
-for (int i = 0; i < n; i++)
-{
-    if (array[i] >= maxIndex)
-    {
-        maxIndex = i;
-    }
-}
-Console.WriteLine(maxIndex);
-int minElement = 9999999, count=0;
-int[] array1 = new int[5] {3,4,6,7,3};
-int predposledn = 0, indexLastMin;
+ans[4] = array[0];
 for (int i = 0; i < 5; i++)
 {
-    if (array1[i] == minElement)
-    {
-        count++;
-        indexLastMin=i;
-    }
-
-    if (array1[i] < minElement)
-    {
-        indexLastMin=i;
-        predposledn = minElement;
-        count = 0;
-        minElement = array1[i];
-        count++;
-    }
-    
-
+    Console.WriteLine(ans[i]);
 }
-Console.WriteLine(count*minElement);
+*/
 
-int k=5;
-int[] bebra = new int[k];
-bool flag, flagGlobal=false;
-for (int i = 0; i < k; i++)
+/*
+ * пересечение
+int[] array1 = new int[] { 1, 2, 3, 4, 5 };
+int[] array2 = new int[] { 3,7,8,9,10 };
+int[] ans = new int[5];
+for (int i = 0; i < 5; i++)
 {
-    flag = true;
-    bebra[i] = rand.Next(100);
-    for (int j = 2; j < (int)(Math.Pow(bebra[i], 0.5) + 1); j++)
+    for (int j = 0; j < 5; j++)
     {
-        if (bebra[i] != j)
+        if(array1[i] < array2[j])
         {
-            if (bebra[i] % j == 0)
-            {
-                flag = false;
-                break;
-
-            }
+            break;
+        }
+        if(array1[i] == array2[j])
+        {
+            ans[i]=array1[i];
         }
     }
-    if (flag)
-    {
-        Console.WriteLine("есть простые числа");
-        flagGlobal = true;
-        break;
-    }
 }
-if (!flagGlobal)
+for (int i = 0; i < 5; i++)
 {
-    Console.WriteLine("простых чисел нет =(");
+    Console.WriteLine(ans[i]);
 }
-
-int[] array2 = new int[5] { 1, 7, 9, 3, 9 };
-for (int i = 0; i < 5-1; i++)
+*/
+int[] array1 = new int[] { 1, 2, 3, 4, 5 };
+int[] array2 = new int[] { 3, 7, 8, 9, 10 };
+int[] ans = new int[5];
+for (int i = 0; i < 5; i++)
 {
-    for (int j = i+1; j < 5; j++)
+    for (int j = 0; j < 5; j++)
     {
-        if (array[i] == array[j])
+         if (array1[i] < array2[j])
         {
-            Console.WriteLine("есть повторяющиеся числа");
+            break;
+        }
+        if (array1[i] == array2[j])
+        {
+            ans[i] = array1[i];
+            break;
+
         }
     }
+}
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine(ans[i]);
 }

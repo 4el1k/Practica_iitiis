@@ -19,4 +19,3 @@ while (Math.Round(Math.Pow(1 + x, a),k)!=Math.Round(summ,k))
 }
 Console.WriteLine($"{summ}, {Math.Pow(1+x,a)}");
 Console.WriteLine(i);
-Console.WriteLine();
