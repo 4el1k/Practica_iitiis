@@ -30,116 +30,92 @@ int[,] Multiply(int[,] array1, int[,] array2)
     return array3;
 }
 //функция перемножения двух матриц
-//память
-int m,n,n1,k;
-m = 4; // строки array1
-n = 4; //столбцы array1
-k = 4; // столбцы array2
-n1 = 4; // строки array2
-int[,] array1 = new int[m,n];
-int[,] array2 = new int[n,k];
-int[,] array3;
-//память
+int n = 6;
+int[,] array = new int[n, n];
 
-//заполнение первого и второго массива
-for (int i = 0; i < m; i++)
+//массив заполняется
+for (int i = 0; i < n; i++)
 {
     for (int j = 0; j < n; j++)
     {
-        array1[i, j] = 1;
+        array[i, j] = 2;
     }
 }
-for (int i = 0; i < n; i++)
+//массив заполняется
+int inputInt = 10;
+int bliz_stepen_2=1,z=0;
+int pow = 1;
+int[,] ans = new int[n, n];
+ans = array;
+while (bliz_stepen_2<inputInt)
 {
-    for (int j = 0; j < k; j++)
-    {
-        array2[i, j] = 2;
-    }
+    bliz_stepen_2 *= 2;
 }
-//заполнение первого и второго массива
-
-//array3 = Multiply(array1,array2);
-
-
-//main
-int nearestWhole2=1;
-int pow2nearestWhole = 0;
-
-int twoPowK = 1;
-
-int inputPow = 135;
-int currentPow = 1;
-int pow=1;
-k = 0;
-int z = 0;
-int[,] promezhutok = new int[n, n];
-while (nearestWhole2 < inputPow)
+bliz_stepen_2 /= 2;
+int bliz_stepen_2_ = 1;
+while (bliz_stepen_2_<inputInt-bliz_stepen_2)
 {
-    nearestWhole2 *= 2; //ближайшее число, которео является степнью 2
-    pow2nearestWhole += 1; //степень этого числа
+    bliz_stepen_2_ *= 2;
+    z++;
 }
-int z1 = 0,z2=1;
-//разница
-while (z2<inputPow - nearestWhole2)
-{
-    z2 *= 2; 
-    z1 += 1; 
-}
-int[][,] massive_for_power_matrix = new int[z1][,];
-massive_for_power_matrix[0] = array1;
+int r = z - 1;
+int k = 0;
+int[][,] massive_for_pow_matrix = new int[z][,];
+massive_for_pow_matrix[0] = array;
 while (true)
 {
-    
-    if (pow*2<=inputPow) //после первого false, больше никогда не сработает
+    if (pow * 2 <= inputInt)
     {
-        promezhutok = Multiply(promezhutok, promezhutok);
-        //promezhutok = Multiply(promezhutok, promezhutok); можно так записать
-
-        pow *= 2; //pow - это число, в степень которого возводим матрицу сейчас. pow - степень двойки
-        k++; //k выступает в роли индекса.
-        if (k < z1)
+        ans = Multiply(ans, ans);
+        pow *= 2;
+        k++;
+        
+        if (k < z)
         {
-            massive_for_power_matrix[k] = promezhutok; //на k индексе хранится матрица A^(2k);
+            massive_for_pow_matrix[k] = ans;
         }
-        twoPowK *= k; //нужно чтобы не юзать Math.Pow
-        currentPow = k; //в этой переменной хранится индекс матрицы, возведенную в максимальную степень
+
     }
-    
-
-
     else
     {
-        twoPowK /= k;
-        k--;
-        // (pow * Math.Pow(2,k)<=inputPow)
-        if (k!=0) //тело этого ифа будет выполняться, пока можно как-то оптимизровать 
+        if (pow==inputInt)
         {
-            if (pow + k <= inputPow)
+            for (int i = 0; i < n; i++)
             {
-                promezhutok = Multiply(massive_for_power_matrix[k], promezhutok);
-                pow += k;
-
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write(ans[i,j]);
+                }
+                Console.WriteLine();
             }
+            break;
         }
-        else
+        if (inputInt - pow != 1)
         {
-            if (pow+1<=inputPow)
+            if (pow + z <= inputInt)
             {
-                promezhutok = Multiply(promezhutok, array1);
+                ans = Multiply(ans, massive_for_pow_matrix[z - 1]);
+                pow += z;
             }
             else
             {
-                break;
+                z--;
             }
-
+        }
+        
+        else
+        {
+            ans = Multiply(ans, array);
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write(ans[i, j]);
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
+            break;
         }
     }
-
 }
-Console.WriteLine(promezhutok);
-
-
-
-
-
-//main
