@@ -1,6 +1,6 @@
 ﻿//A(m*n) * B(n*k) = С(m*k)
 //функция перемножения двух матриц
-int[,] Multiply(int[,] array1, int[,] array2)
+ulong[,] Multiply(ulong[,] array1, ulong[,] array2)
 {
     int m = array1.GetLength(0); //строки
     int n = array1.GetLength(1); //столбцы
@@ -10,10 +10,10 @@ int[,] Multiply(int[,] array1, int[,] array2)
     if (n != n1)
     {
         Console.WriteLine("всё очень плохо");
-        return new int[0,0];
+        return new ulong[0,0];
     }
-    int[,] array3 = new int[m, k];
-    int sum = 0;
+    ulong[,] array3 = new ulong[m, k];
+    ulong sum = 0;
     for (int i = 0; i < m; i++)
     {
         for (int r = 0; r < k; r++)
@@ -30,8 +30,10 @@ int[,] Multiply(int[,] array1, int[,] array2)
     return array3;
 }
 //функция перемножения двух матриц
+
+//создание массива для возведнения в степень
 int n = 6;
-int[,] array = new int[n, n];
+ulong[,] array = new ulong[n, n];
 
 //массив заполняется
 for (int i = 0; i < n; i++)
@@ -42,40 +44,63 @@ for (int i = 0; i < n; i++)
     }
 }
 //массив заполняется
-int inputInt = 10;
-int bliz_stepen_2=1,z=0;
-int pow = 1;
-int[,] ans = new int[n, n];
+
+//инициализация переменных и массивов
+
+int inputInt = 24; //степень, в которую нужно возвести матрицу (работает до 24)
+int bliz_stepen_2 = 1; //мусор, нужен только для z
+int z=0; //для того чтобы знать степени, для возведения матрицы в них, чтобы потом их (матрицы) сохранить
+int pow = 1; //в какую степень сейчас возведена матрица
+ulong[,] ans = new ulong[n, n]; //это матрица - ответ
 ans = array;
-while (bliz_stepen_2<inputInt)
+inputInt = 20;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//ищем ближайшее число для степени в которую нужно возвести матрицу, являющееся степенью двойки
+while (bliz_stepen_2*2<=inputInt) 
 {
     bliz_stepen_2 *= 2;
 }
-bliz_stepen_2 /= 2;
+Console.WriteLine(bliz_stepen_2);
+//закончили искать
+
+//теперь нам нужно найти ближайшее число являющееся степенью двойки
+//для разницы (ближ.цел.числ.явл.степ.2 для степени, в которую нужно возвести число) и (самим числом) 
+//и мы должны узнать, степень этого числа
 int bliz_stepen_2_ = 1;
-while (bliz_stepen_2_<inputInt-bliz_stepen_2)
+
+while (bliz_stepen_2_*2<=inputInt-bliz_stepen_2)
 {
     bliz_stepen_2_ *= 2;
     z++;
 }
-int r = z - 1;
-int k = 0;
-int[][,] massive_for_pow_matrix = new int[z][,];
+Console.WriteLine($"{z} {bliz_stepen_2_}");
+//закончили искать
+//----
+int z1 = 1;
+int k = 1; 
+ulong[][,] massive_for_pow_matrix = new ulong[z+1][,];
 massive_for_pow_matrix[0] = array;
-while (true)
+if (z>0)
+{
+    massive_for_pow_matrix[1] = array;
+    z1 = z;
+}
+bool flag = true;
+//инициализация переменных и массивов
+while (flag)
 {
     if (pow * 2 <= inputInt)
     {
         ans = Multiply(ans, ans);
         pow *= 2;
-        k++;
-        
-        if (k < z)
+
+        k++; //изначально еденичка
+        if (k <= z)
         {
             massive_for_pow_matrix[k] = ans;
         }
 
     }
+
     else
     {
         if (pow==inputInt)
@@ -84,25 +109,28 @@ while (true)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    Console.Write(ans[i,j]);
+                    Console.Write($"{ans[i, j]} ");
                 }
                 Console.WriteLine();
             }
-            break;
-        }
-        if (inputInt - pow != 1)
-        {
-            if (pow + z <= inputInt)
-            {
-                ans = Multiply(ans, massive_for_pow_matrix[z - 1]);
-                pow += z;
-            }
-            else
-            {
-                z--;
-            }
+            Console.WriteLine();
+            flag = false;
         }
         
+        
+        if (pow + z1 <= inputInt)
+        {
+            ans = Multiply(ans, massive_for_pow_matrix[z1-1]);
+            pow += z1;
+        }
+
+        else
+        {
+            z1--;
+        }
+
+
+        /*
         else
         {
             ans = Multiply(ans, array);
@@ -117,5 +145,7 @@ while (true)
             }
             break;
         }
+        */
     }
 }
+    
