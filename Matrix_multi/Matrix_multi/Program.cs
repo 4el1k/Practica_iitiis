@@ -1,6 +1,6 @@
 ﻿//A(m*n) * B(n*k) = С(m*k)
 //функция перемножения двух матриц
-ulong[,] Multiply(ulong[,] array1, ulong[,] array2)
+double[,] Multiply(double[,] array1, double[,] array2)
 {
     int m = array1.GetLength(0); //строки
     int n = array1.GetLength(1); //столбцы
@@ -10,10 +10,10 @@ ulong[,] Multiply(ulong[,] array1, ulong[,] array2)
     if (n != n1)
     {
         Console.WriteLine("всё очень плохо");
-        return new ulong[0,0];
+        return new double[0,0];
     }
-    ulong[,] array3 = new ulong[m, k];
-    ulong sum = 0;
+    double[,] array3 = new double[m, k];
+    double sum = 0;
     for (int i = 0; i < m; i++)
     {
         for (int r = 0; r < k; r++)
@@ -33,7 +33,7 @@ ulong[,] Multiply(ulong[,] array1, ulong[,] array2)
 
 //создание массива для возведнения в степень
 int n = 6;
-ulong[,] array = new ulong[n, n];
+double[,] array = new double[n, n];
 
 //массив заполняется
 for (int i = 0; i < n; i++)
@@ -51,9 +51,9 @@ int inputInt = 24; //степень, в которую нужно возвест
 int bliz_stepen_2 = 1; //мусор, нужен только для z
 int z=0; //для того чтобы знать степени, для возведения матрицы в них, чтобы потом их (матрицы) сохранить
 int pow = 1; //в какую степень сейчас возведена матрица
-ulong[,] ans = new ulong[n, n]; //это матрица - ответ
+double[,] ans = new double[n, n]; //это матрица - ответ
 ans = array;
-inputInt = 20;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+inputInt = 25;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //ищем ближайшее число для степени в которую нужно возвести матрицу, являющееся степенью двойки
 while (bliz_stepen_2*2<=inputInt) 
 {
@@ -77,11 +77,11 @@ Console.WriteLine($"{z} {bliz_stepen_2_}");
 //----
 int z1 = 1;
 int k = 1; 
-ulong[][,] massive_for_pow_matrix = new ulong[z+1][,];
+double[][,] massive_for_pow_matrix = new double[z+1][,];
 massive_for_pow_matrix[0] = array;
 if (z>0)
 {
-    massive_for_pow_matrix[1] = array;
+    //massive_for_pow_matrix[1] = array;
     z1 = z;
 }
 bool flag = true;
@@ -93,12 +93,12 @@ while (flag)
         ans = Multiply(ans, ans);
         pow *= 2;
 
-        k++; //изначально еденичка
+         //изначально еденичка
         if (k <= z)
         {
             massive_for_pow_matrix[k] = ans;
         }
-
+        k++;
     }
 
     else
@@ -116,12 +116,27 @@ while (flag)
             Console.WriteLine();
             flag = false;
         }
-        
-        
-        if (pow + z1 <= inputInt)
+        if (pow+1==inputInt)
         {
-            ans = Multiply(ans, massive_for_pow_matrix[z1-1]);
-            pow += z1;
+            ans= Multiply(ans, massive_for_pow_matrix[0]);
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write($"{ans[i, j]} ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            flag = false;
+        }
+        
+        
+        if (pow + (int)Math.Pow(2,z1) <= inputInt)
+        {
+            ans = Multiply(ans, massive_for_pow_matrix[z1]);
+            pow += (int)Math.Pow(2,z1);
+
         }
 
         else
@@ -129,7 +144,7 @@ while (flag)
             z1--;
         }
 
-
+        
         /*
         else
         {
