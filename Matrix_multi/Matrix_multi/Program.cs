@@ -1,4 +1,5 @@
-﻿//A(m*n) * B(n*k) = С(m*k)
+﻿//сложность ал-ма O( log2(n) + log2(n-log(n-log(n)))) = O( log2(n^2-n*log(n)) )
+//A(m*n) * B(n*k) = С(m*k)
 //функция перемножения двух матриц
 double[,] Multiply(double[,] array1, double[,] array2)
 {
@@ -53,8 +54,7 @@ int z=0; //для того чтобы знать степени, для возв
 int pow = 1; //в какую степень сейчас возведена матрица
 double[,] ans = new double[n, n]; //это матрица - ответ
 ans = array;
-inputInt = 25;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//ищем ближайшее число для степени в которую нужно возвести матрицу, являющееся степенью двойки
+//ищем ближайшее целое число снизу, явл. степ. двойки
 while (bliz_stepen_2*2<=inputInt) 
 {
     bliz_stepen_2 *= 2;
@@ -62,8 +62,8 @@ while (bliz_stepen_2*2<=inputInt)
 Console.WriteLine(bliz_stepen_2);
 //закончили искать
 
-//теперь нам нужно найти ближайшее число являющееся степенью двойки
-//для разницы (ближ.цел.числ.явл.степ.2 для степени, в которую нужно возвести число) и (самим числом) 
+//теперь нам нужно найти ближайшее число являющееся степенью двойки для разницы 
+//(ближ.цел.числ.явл.степ.2 для степени, в которую нужно возвести число) и (самим числом) 
 //и мы должны узнать, степень этого числа
 int bliz_stepen_2_ = 1;
 
@@ -72,37 +72,42 @@ while (bliz_stepen_2_*2<=inputInt-bliz_stepen_2)
     bliz_stepen_2_ *= 2;
     z++;
 }
-Console.WriteLine($"{z} {bliz_stepen_2_}");
 //закончили искать
-//----
-int z1 = 1;
+//далее память будет выделена для сохранения матриц в каких либо степенях
 int k = 1; 
-double[][,] massive_for_pow_matrix = new double[z+1][,];
-massive_for_pow_matrix[0] = array;
+double[][,] massive_for_pow_matrix = new double[z + 1][,]; //размер z+1 это важно
+massive_for_pow_matrix[0] = array; // massive_for_pow_matrix[a] = array^(2^a)
+//немного костылей, чтобы работало как на малых числах, так и на больших
+int z1 = 1; 
 if (z>0)
 {
-    //massive_for_pow_matrix[1] = array;
     z1 = z;
 }
+//z1 почти всегда равно z
 bool flag = true;
 //инициализация переменных и массивов
+
+//main
 while (flag)
 {
+    //доходим до A^n, где n-степ. двойки. 2^n ближ. число явл. степ. двойки для inputInt снизу
     if (pow * 2 <= inputInt)
     {
         ans = Multiply(ans, ans);
         pow *= 2;
 
-         //изначально еденичка
+         //изначально k=1;
         if (k <= z)
         {
             massive_for_pow_matrix[k] = ans;
         }
         k++;
     }
-
+    //теперь надо немного "добрать" степень
+    //тут уже нужно будет знать значение матриц в разных степенях.
     else
     {
+        //если мы уже получили нужную матрицу, то просто вывод
         if (pow==inputInt)
         {
             for (int i = 0; i < n; i++)
@@ -116,6 +121,7 @@ while (flag)
             Console.WriteLine();
             flag = false;
         }
+        //если нужно просто домножить текущую матрицу на изначальную, делаем это и выводим
         if (pow+1==inputInt)
         {
             ans= Multiply(ans, massive_for_pow_matrix[0]);
@@ -131,7 +137,7 @@ while (flag)
             flag = false;
         }
         
-        
+        //тут происходит основной донабор в степени
         if (pow + (int)Math.Pow(2,z1) <= inputInt)
         {
             ans = Multiply(ans, massive_for_pow_matrix[z1]);
@@ -144,23 +150,7 @@ while (flag)
             z1--;
         }
 
-        
-        /*
-        else
-        {
-            ans = Multiply(ans, array);
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write(ans[i, j]);
-                    Console.WriteLine();
-                }
-                Console.WriteLine();
-            }
-            break;
-        }
-        */
     }
 }
+//main
     
