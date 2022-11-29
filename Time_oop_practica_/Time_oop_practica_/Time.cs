@@ -6,20 +6,96 @@ using System.Threading.Tasks;
 
 namespace Time_oop_practica_
 {
+
+    //исправил сеттеры в свойствах Hour, Minute, Second
+    //подправил коструктор Time
     public class Time
     {
-        public int Hour { get; set; }
-        public int Minute { get; set; }
-        public int Second { get; set; }
+        private int hour, minute, second;
+
+        public int Hour
+        {
+            get { return hour; }
+            set
+            {
+                if (value>=0)
+                {
+                    if (value > 23)
+                    {
+                        hour = value % 24;
+                    }
+                    else
+                    {
+                        hour = value;
+                    }
+                    
+                }
+                else
+                {
+                    throw new ArgumentException("часы не могут быть отрицательными");
+                }
+            }
+        }
+        public int Minute
+        {
+            get { return minute; }
+            set
+            {
+                if (value >= 0)
+                {
+                    if (value>59)
+                    {
+                        hour += minute / 60;
+                        minute = value % 60;
+                    }
+                    else
+                    {
+                        minute = value;
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("минуты не могут быть отрицательными");
+                }
+            }
+        }
+        public int Second
+        {
+            get { return second; }
+            set
+            {
+                if (value >= 0)
+                {
+                    if (value>59)
+                    {
+                        minute += value / 60;
+                        second = value % 60;
+                    }
+                    else
+                    {
+                        second = value;
+                    }
+                    
+                }
+                else
+                {
+                    throw new ArgumentException("секунды не могут быть отрицательными");
+                }
+            }
+        }
 
         public Time(int h, int m, int s)
         {
-            Hour = FromSeconds(InSeconds(h, m, s))[0];
-            Minute = FromSeconds(InSeconds(h, m, s))[1];
-            Second = FromSeconds(InSeconds(h, m, s))[2];
+            int[] times = FromSeconds(InSeconds(h, m, s));
+            Hour = times[0];
+            Minute = times[1];
+            Second = times[2];
 
         }
-        private int[] FromSeconds(int seconds)
+        public Time() : this(0, 0, 0)
+        {
+        }
+        private static int[] FromSeconds(int seconds)
         {
             int hours, minutes;
             minutes = seconds / 60;
@@ -32,7 +108,7 @@ namespace Time_oop_practica_
             }
             return new int[] { hours, minutes, seconds };
         }
-        public int InSeconds(int hours, int minutes, int seconds)
+        public static int InSeconds(int hours, int minutes, int seconds)
         {
             return hours * 3600 + minutes * 60 + seconds;
         }
@@ -41,55 +117,31 @@ namespace Time_oop_practica_
 
         public static bool operator !=(Time t1, Time t2)
         {
-            return t1.Hour != t2.Hour && t1.Minute != t2.Minute && t1.Second != t2.Second;
+            return !(t1.Hour == t2.Hour && t1.Minute == t2.Minute && t1.Second == t2.Second);
         }
         public static bool operator ==(Time t1, Time t2)
         {
-            return t1.Hour == t2.Hour && t1.Minute == t2.Minute && t1.Second == t2.Second;
+            return InSeconds(t1.Hour, t1.Minute, t1.Second) == InSeconds(t2.Hour, t2.Minute, t2.Second);
         }
         public static bool operator <=(Time t1, Time t2)
         {
-            if (t1.Minute==t2.Minute && t1.Second==t2.Second && t1.Hour==t2.Hour)
-            {
-                return true;
-            }
-            return t1 < t2;
+            return InSeconds(t1.Hour, t1.Minute, t1.Second) <= InSeconds(t2.Hour, t2.Minute, t2.Second);                
         }
 
         public static bool operator >=(Time t1, Time t2)
         {
-            if (t1.Minute == t2.Minute && t1.Second == t2.Second && t1.Hour == t2.Hour)
-            {
-                return true;
-            }
-            return t1 > t2;
+            return InSeconds(t1.Hour, t1.Minute, t1.Second) >= InSeconds(t2.Hour, t2.Minute, t2.Second);
         }
 
         public static bool operator <(Time t1, Time t2)
         {
-            if (t1.Hour==t2.Hour)
-            {
-                if (t2.Minute == t1.Minute)
-                {
-                    return t1.Second < t2.Second;
-                }
-                return t1.Minute < t2.Minute;
-            }
-            return t1.Hour < t1.Hour;
+            return InSeconds(t1.Hour, t1.Minute, t1.Second) < InSeconds(t2.Hour, t2.Minute, t2.Second);
         }
 
         
         public static bool operator >(Time t1, Time t2)
         {
-            if (t1.Hour == t2.Hour)
-            {
-                if (t2.Minute == t1.Minute)
-                {
-                    return t1.Second > t2.Second;
-                }
-                return t1.Minute > t2.Minute;
-            }
-            return t1.Hour > t1.Hour;
+            return InSeconds(t1.Hour, t1.Minute, t1.Second) > InSeconds(t2.Hour, t2.Minute, t2.Second);
         }
 
 
