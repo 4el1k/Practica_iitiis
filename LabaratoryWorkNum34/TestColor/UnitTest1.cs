@@ -9,7 +9,7 @@ namespace TestColor
         {
         }
 
-        [TestCase(0.345, 0.654, 0.6765)]
+        [TestCase(0.345, 0.6514, 0.6765)]
         [TestCase(0.3000, 0.600, 0.6700)]
         [TestCase(0.1, 0.1, 0.1)]
         [TestCase(0.0000345, 0.0000654, 0.00006765)]

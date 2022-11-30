@@ -46,7 +46,7 @@ namespace LabaratoryWorkNum34
             {
                 throw new ArgumentException("value green in interval [0,1]");
             }
-
+            
             if (blue >= 0 && blue <= 1)
             {
                 this.blue = blue;
@@ -55,7 +55,7 @@ namespace LabaratoryWorkNum34
             {
                 throw new ArgumentException("value red in interval [0,1]");
             }
-            Cyan = 1 - red; Magenta = 1 - Green; Yellow = 1 - Blue;
+            Cyan = 1 - red; Magenta = 1 - green; Yellow = 1 - blue;
         }
 
         public ColorRGB() : this(0, 0, 0)
