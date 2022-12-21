@@ -90,12 +90,24 @@ namespace ControlWorkRemake
                 }
                 matr = array;
             }
-            
-
         }
     
             
-
+        public void InstallMatrix(string filename)
+        {
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < QuantityStrings; i++)
+            {
+                for (int j = 0; j < QuantityColumns; j++)
+                {
+                    str.Append($"{matr[i, j]} ");
+                }
+                str.AppendLine();
+            }
+            StreamWriter sw = new StreamWriter(filename);
+            sw.WriteLine(str.ToString());
+            sw.Close(); 
+        }
 
         
 
@@ -123,7 +135,7 @@ namespace ControlWorkRemake
             {
                 for (int j = 0; j < QuantityColumns; j++)
                 {
-                    str.Append($"{matr[i, j]}");
+                    str.Append($"{matr[i, j]} ");
                 }
                 str.AppendLine();
             }
@@ -174,7 +186,7 @@ namespace ControlWorkRemake
             {
                 throw new ArgumentException("неподходящие размеры матриц");
             }
-            int[,] matr = new int[m2.QuantityColumns, m1.QuantityStrings];
+            int[,] matr = new int[m2.QuantityStrings, m1.QuantityColumns];
             int[,] matr1 = m1.Matr;
             int[,] matr2 = m2.Matr;
             for (int i = 0; i < m1.QuantityColumns; i++)
@@ -188,9 +200,9 @@ namespace ControlWorkRemake
                 }
             }
             return new Matrix(matr);
-        }
+        } 
 
-        public Matrix Transponir(Matrix matr)
+        public static Matrix Transponir(Matrix matr)
         {
             int[,] m = new int[matr.QuantityStrings, matr.QuantityColumns];
             int[,] mMain = matr.Matr;
@@ -198,7 +210,7 @@ namespace ControlWorkRemake
             {
                 for (int j = 0; j < matr.QuantityColumns; j++)
                 {
-                    m[i, j] = mMain[j, j];
+                    m[i, j] = mMain[j, i];
                 }
             }
             return new Matrix(m);
