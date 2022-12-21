@@ -72,35 +72,32 @@ namespace ControlWorkRemake
         }
 
 
-        public Matrix(string filename)
+        public Matrix(string filename,int n)
         {
-            string s;
-            int k = 0;
-            int k2 = 0;
-            StreamReader str = new StreamReader(filename);
-            if ((s = str.ReadLine()) != null) // k длина строк
-            {
-                string[] s1 = s.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                k = s1.Length;
-            }
-            while ((s = str.ReadLine()) != null) //k2 длинна столбцов
-            {
-                k2++;
-            }
+            int[,] array = new int[n, n];
+            QuantityColumns = n;
+            QuantityStrings = n;
 
-            int[,] ans = new int[k, k2];
-            k = 0;
-            while ((s = str.ReadLine()) != null)
+            using (StreamReader sr = new StreamReader(filename))
             {
-                string[] s1 = s.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                for (int i = 0; i < s1.Length; i++)
+                for (int i = 0; i < array.GetLength(0); i++)
                 {
-                    k++;
+                    var subs = sr.ReadLine().Trim().Split(' ');
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        array[i, j] = int.Parse(subs[j]);
+                    }
                 }
+                matr = array;
             }
-
+            
 
         }
+    
+            
+
+
+        
 
 
 
