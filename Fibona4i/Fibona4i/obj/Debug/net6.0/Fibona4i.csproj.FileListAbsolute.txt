@@ -1,0 +1,15 @@
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.csproj.AssemblyReference.cache
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.AssemblyInfoInputs.cache
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.AssemblyInfo.cs
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.csproj.CoreCompileInputs.cache
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\bin\Debug\net6.0\Fibona4i.exe
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\bin\Debug\net6.0\Fibona4i.deps.json
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\bin\Debug\net6.0\Fibona4i.runtimeconfig.json
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\bin\Debug\net6.0\Fibona4i.dll
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\bin\Debug\net6.0\Fibona4i.pdb
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.dll
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\refint\Fibona4i.dll
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.pdb
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\Fibona4i.genruntimeconfig.cache
+C:\Users\salav\source\repos\Practica_iitiis\Fibona4i\Fibona4i\obj\Debug\net6.0\ref\Fibona4i.dll

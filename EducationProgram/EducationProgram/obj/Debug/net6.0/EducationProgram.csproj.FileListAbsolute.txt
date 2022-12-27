@@ -1,0 +1,15 @@
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\bin\Debug\net6.0\EducationProgram.exe
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\bin\Debug\net6.0\EducationProgram.deps.json
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\bin\Debug\net6.0\EducationProgram.runtimeconfig.json
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\bin\Debug\net6.0\EducationProgram.dll
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\bin\Debug\net6.0\EducationProgram.pdb
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.csproj.AssemblyReference.cache
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.AssemblyInfoInputs.cache
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.AssemblyInfo.cs
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.csproj.CoreCompileInputs.cache
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.dll
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\refint\EducationProgram.dll
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.pdb
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\EducationProgram.genruntimeconfig.cache
+C:\Users\salav\source\repos\Practica_iitiis\EducationProgram\EducationProgram\obj\Debug\net6.0\ref\EducationProgram.dll
